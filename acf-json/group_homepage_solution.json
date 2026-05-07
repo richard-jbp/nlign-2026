@@ -13,9 +13,9 @@
 			]
 		},
 		{
-			"key": "field_solution_screens", "label": "Dashboard screens (up to 3)", "name": "solution_screens", "type": "gallery",
-			"return_format": "array", "min": 0, "max": 3,
-			"instructions": "Upload 1–3 dashboard screenshots. They will be stacked diagonally."
+			"key": "field_solution_screens", "label": "Dashboard screens (up to 4)", "name": "solution_screens", "type": "gallery",
+			"return_format": "array", "min": 0, "max": 4,
+			"instructions": "Upload 1–4 dashboard screenshots. They will fan out diagonally — first image is the hero (front), each subsequent image steps back-right with reduced opacity."
 		},
 		{
 			"key": "field_solution_tabs", "label": "Persona tabs", "name": "solution_tabs", "type": "repeater",

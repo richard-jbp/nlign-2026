@@ -57,8 +57,8 @@ $tabs    = (array)  nlign_field( 'solution_tabs', [
 			<?php if ( ! empty( $screens ) ) : ?>
 				<div class="solution__art" aria-hidden="true">
 					<?php
-					$variants = [ 'front', 'mid', 'back' ];
-					foreach ( array_slice( $screens, 0, 3 ) as $i => $img ) :
+					$variants = [ 'front', 'mid', 'back', 'ghost' ];
+					foreach ( array_slice( $screens, 0, 4 ) as $i => $img ) :
 						$class = 'solution__art-screen solution__art-screen--' . $variants[ $i ];
 						?>
 						<div class="<?php echo esc_attr( $class ); ?>">

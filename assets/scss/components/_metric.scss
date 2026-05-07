@@ -8,41 +8,55 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/breakpoints" as bp;
 
+// Mockup pattern (Reality section):
+//
+//     LONGER CYCLES                                       ← eyebrow row (orange caps)
+//     2-5x          Longer MRB cycles                     ← figure + caption row
+//     ─────────────────────────────────────────────       ← divider below
+//
+// The eyebrow occupies its own row above the figure; figure and caption
+// share the same baseline on the second row, with the divider beneath.
+
 .metric {
-	display: grid;
-	// Tighter mockup proportions: narrow eyebrow column, then figure pulled
-	// close to it, then the caption uses whatever width remains.
-	grid-template-columns: minmax(180px, 260px) minmax(180px, 320px) minmax(0, 1fr);
-	align-items: baseline;
-	gap: $space-4 $space-10;
-	padding-block: $space-6;
+	padding-block: $space-8 $space-7;
 	border-bottom: $border-thin;
 
 	&:first-child { border-top: $border-thin; }
 
-	@include bp.down(tablet) {
-		grid-template-columns: 1fr;
-		gap: $space-2;
-		padding-block: $space-5;
-	}
-
 	&__label {
 		@include m.eyebrow-style;
-		margin: 0;
+		margin: 0 0 $space-6; // pushes the figure row down from the eyebrow
+	}
+
+	&__row {
+		display: grid;
+		grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+		align-items: baseline;
+		gap: $space-10;
+
+		@include bp.down(tablet) {
+			grid-template-columns: 1fr;
+			gap: $space-3;
+		}
 	}
 
 	&__figure {
-		font-size: clamp(2.5rem, 1.5rem + 4.5vw, 4.5rem);
+		font-size: clamp(3rem, 2rem + 4.5vw, 6rem);
 		font-weight: 300;
 		color: $nlign-text;
 		line-height: 1;
-		letter-spacing: $tracking-tight;
+		letter-spacing: -0.01em;
 		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
 	}
 
 	&__caption {
 		color: $nlign-text-muted;
 		font-size: $fz-body-sm;
-		max-width: 36ch;
+		line-height: $lh-base;
+		max-width: 42ch;
+		// Pin caption to the lower edge of the figure (typographic baseline).
+		align-self: end;
+		padding-bottom: .35em;
 	}
 }

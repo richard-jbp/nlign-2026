@@ -6,6 +6,12 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/breakpoints" as bp;
 
+// Mockup composition:
+//   • LEFT column (~45%):  big H2 "Real-World Customer Results" stays at top
+//   • RIGHT column (~55%): a stacked list of metric rows, each row =
+//        [LABEL right-aligned] · [FIGURE left-aligned]
+//        with a horizontal divider spanning both columns below each row.
+
 .impact {
 	background: $nlign-bg;
 	padding-block: clamp(4rem, 8vw, 8rem);
@@ -13,7 +19,7 @@
 	&__inner {
 		@include m.container;
 		display: grid;
-		grid-template-columns: 1fr 1.1fr;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
 		gap: $space-16;
 		align-items: start;
 
@@ -26,20 +32,17 @@
 	&__title {
 		font-size: $fz-h2;
 		max-width: 14ch;
+		line-height: $lh-tight;
 	}
 
 	&__metrics { @include m.reset-list; }
 
-	// Metric variant for impact: small uppercase label hugs the figure.
-	// Label sits right-aligned in column 1; figure left-aligned in column 2.
-	// This keeps the two parts visually paired (like the mockup) instead of
-	// stretching them across the width of the row.
 	&__metric {
 		display: grid;
-		grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
 		align-items: baseline;
 		gap: $space-8;
-		padding-block: $space-5;
+		padding-block: $space-7;
 		border-bottom: $border-thin;
 
 		&:first-child { border-top: $border-thin; }
@@ -47,6 +50,7 @@
 		@include bp.down(tablet) {
 			grid-template-columns: 1fr;
 			gap: $space-1;
+			padding-block: $space-5;
 		}
 	}
 
@@ -54,18 +58,18 @@
 		@include m.eyebrow-style;
 		margin: 0;
 		text-align: right;
-		max-width: 100%;
 
 		@include bp.down(tablet) { text-align: left; }
 	}
 
 	&__metric-figure {
-		font-size: clamp(2.75rem, 1.4rem + 5vw, 5.5rem);
+		font-size: clamp(2.75rem, 1.5rem + 5vw, 6rem);
 		font-weight: 300;
 		color: $nlign-text;
 		line-height: 1;
 		justify-self: start;
 		font-variant-numeric: tabular-nums;
-		letter-spacing: $tracking-tight;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
 	}
 }

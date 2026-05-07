@@ -32,17 +32,17 @@
 
 	&__title {
 		font-size: $fz-h1;
-		line-height: $lh-tight;
+		line-height: 1.05;
 		font-weight: 700;
 		letter-spacing: $tracking-tight;
 		color: $nlign-text;
 		margin-bottom: $space-6;
-		max-width: 14ch; // forces a 2-line break that mirrors the mockup
+		// No max-width — natural wrapping inside the column produces the
+		// "Operational Truth for / Mission-Critical Assets" 2-line layout.
 
 		span.highlight {
 			color: $nlign-orange;
-			// Soft hyphen-friendly: keeps the orange phrase together.
-			white-space: nowrap;
+			white-space: nowrap; // keep "Operational Truth" together
 		}
 	}
 

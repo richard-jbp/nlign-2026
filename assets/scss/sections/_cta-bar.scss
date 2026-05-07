@@ -6,17 +6,22 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/breakpoints" as bp;
 
+// Mockup composition:
+//   [Title — large, 2 lines]                 [Book Demo button]
+//   [EYEBROW — small caps below the title]
+//
+// The button sits vertically aligned with the title block, on the right.
 .cta-bar {
 	background: $nlign-bg-elevated;
-	padding-block: clamp(3rem, 6vw, 6rem);
+	padding-block: clamp(3.5rem, 7vw, 7rem);
 	border-top: $border-thin;
 	border-bottom: $border-thin;
 
 	&__inner {
 		@include m.container;
 		display: grid;
-		grid-template-columns: 1fr auto;
-		gap: $space-10;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: $space-12;
 		align-items: center;
 
 		@include bp.down(tablet) {
@@ -26,13 +31,24 @@
 	}
 
 	&__title {
-		font-size: $fz-h3;
+		font-size: clamp(2rem, 1.4rem + 2.5vw, 3.5rem);
 		line-height: $lh-snug;
 		max-width: 24ch;
-		margin-bottom: $space-3;
+		margin: 0 0 $space-4;
+		letter-spacing: $tracking-tight;
 
 		.dot { color: $nlign-orange; }
 	}
 
-	&__eyebrow { @include m.eyebrow-style; margin: 0; }
+	&__eyebrow {
+		@include m.eyebrow-style;
+		margin: 0;
+	}
+
+	// Button right-aligned by default via grid column.
+	.button { justify-self: end; }
+
+	@include bp.down(tablet) {
+		.button { justify-self: start; }
+	}
 }

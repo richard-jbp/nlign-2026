@@ -7,29 +7,11 @@
 <link rel="preload" as="font" type="font/woff2" href="fonts/Inter.woff2" crossorigin>
 <link rel="stylesheet" href="dist/main.css">
 <style>
-/* Preview-only placeholder visuals (so the page looks alive without real assets) */
-.ph-aircraft {
-	width: 100%; height: 100%;
-	background:
-		radial-gradient(1200px 600px at 30% 30%, rgba(255,255,255,.10), transparent 60%),
-		linear-gradient(135deg, #2a2d31 0%, #1a1c1f 50%, #0e0f12 100%);
-	position: relative;
-}
-.ph-aircraft::after {
-	content: ""; position: absolute; inset: 0;
-	background-image:
-		linear-gradient(45deg, transparent 48%, rgba(255,255,255,.06) 49%, rgba(255,255,255,.06) 51%, transparent 52%),
-		linear-gradient(-45deg, transparent 48%, rgba(255,255,255,.04) 49%, rgba(255,255,255,.04) 51%, transparent 52%);
-	background-size: 60px 60px, 80px 80px;
-	mix-blend-mode: screen;
-}
-.ph-dash { width: 100%; height: 100%; background: linear-gradient(180deg, #1a1c1f 0%, #0e0f12 100%); position: relative; }
-.ph-dash::before { content: ""; position: absolute; left: 16px; top: 14px; right: 16px; height: 8px; background: rgba(255,255,255,.08); border-radius: 2px; }
-.ph-dash::after  { content: ""; position: absolute; left: 16px; top: 36px; right: 16px; bottom: 14px;
-	background:
-		repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 24px),
-		linear-gradient(180deg, rgba(243,73,27,.10) 0%, rgba(243,73,27,0) 60%);
-	border-radius: 4px; }
+  .ph-aircraft { width:100%; height:100%; background: radial-gradient(1200px 600px at 30% 30%, rgba(255,255,255,.10), transparent 60%), linear-gradient(135deg, #2a2d31 0%, #1a1c1f 50%, #0e0f12 100%); position:relative; }
+  .ph-aircraft::after { content:""; position:absolute; inset:0; background-image: linear-gradient(45deg, transparent 48%, rgba(255,255,255,.06) 49%, rgba(255,255,255,.06) 51%, transparent 52%), linear-gradient(-45deg, transparent 48%, rgba(255,255,255,.04) 49%, rgba(255,255,255,.04) 51%, transparent 52%); background-size: 60px 60px, 80px 80px; mix-blend-mode: screen; }
+  .ph-dash { width:100%; height:100%; background: linear-gradient(180deg, #1a1c1f 0%, #0e0f12 100%); position:relative; }
+  .ph-dash::before { content:""; position:absolute; left:16px; top:14px; right:16px; height:8px; background:rgba(255,255,255,.08); border-radius:2px; }
+  .ph-dash::after { content:""; position:absolute; left:16px; top:36px; right:16px; bottom:14px; background: repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 24px), linear-gradient(180deg, rgba(243,73,27,.10) 0%, rgba(243,73,27,0) 60%); border-radius:4px; }
 </style>
 </head>
 <body class="has-dark-bg">
@@ -38,7 +20,7 @@
 <header class="site-header" role="banner">
 	<div class="site-header__inner">
 		<a class="site-header__logo" href="#" aria-label="NLign">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="120" height="26"><text x="0" y="36" font-family="Inter,system-ui" font-size="34" font-weight="900" fill="#84978e">NLIGN</text></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="32" height="32" style="margin-right:8px;vertical-align:middle"><path d="M30 5 L55 18 L55 42 L30 55 L5 42 L5 18 Z" fill="none" stroke="#84978e" stroke-width="3"/><path d="M30 12 L48 22 L40 38 L20 38 L12 22 Z" fill="none" stroke="#f3491b" stroke-width="2"/></svg><span style="vertical-align:middle;color:#84978e;font-weight:900;font-size:24px;letter-spacing:0.02em;">NLIGN</span>
 		</a>
 		<nav class="primary-nav" aria-label="Primary">
 			<ul class="primary-nav__list">
@@ -54,6 +36,7 @@
 </header>
 
 <main id="main-content">
+
 <section class="hero" id="top">
 	<div class="hero__inner">
 		<div class="hero__content">
@@ -82,10 +65,10 @@
 			<p class="reality__supporting">Disconnected data, manual workflows, and siloed systems slow teams down and drive up cost across the asset lifecycle.</p>
 		</div>
 		<div class="reality__metrics">
-			<div class="metric"><p class="metric__label">Longer cycles</p><p class="metric__figure">2–5x</p><p class="metric__caption">Longer MRB cycles</p></div>
-			<div class="metric"><p class="metric__label">Higher costs</p><p class="metric__figure">20–30%</p><p class="metric__caption">Of total costs associated with cost of poor quality</p></div>
-			<div class="metric"><p class="metric__label">Increased downtime</p><p class="metric__figure">20–40%</p><p class="metric__caption">Longer Mean Time to Repair (MTTR)</p></div>
-			<div class="metric"><p class="metric__label">Operational waste</p><p class="metric__figure">10–25%</p><p class="metric__caption">Excess SG&amp;A from duplicated effort and data reconciliation</p></div>
+			<div class="metric"><p class="metric__label">Longer cycles</p><div class="metric__row"><p class="metric__figure">2–5x</p><p class="metric__caption">Longer MRB cycles</p></div></div>
+			<div class="metric"><p class="metric__label">Higher costs</p><div class="metric__row"><p class="metric__figure">20–30%</p><p class="metric__caption">Of total costs associated with cost of poor quality</p></div></div>
+			<div class="metric"><p class="metric__label">Increased downtime</p><div class="metric__row"><p class="metric__figure">20–40%</p><p class="metric__caption">Longer Mean Time to Repair (MTTR)</p></div></div>
+			<div class="metric"><p class="metric__label">Operational waste</p><div class="metric__row"><p class="metric__figure">10–25%</p><p class="metric__caption">Excess SG&amp;A from duplicated effort and data reconciliation</p></div></div>
 		</div>
 	</div>
 </section>
@@ -103,6 +86,7 @@
 				<div class="solution__art-screen solution__art-screen--front"><div class="ph-dash"></div></div>
 				<div class="solution__art-screen solution__art-screen--mid"><div class="ph-dash"></div></div>
 				<div class="solution__art-screen solution__art-screen--back"><div class="ph-dash"></div></div>
+				<div class="solution__art-screen solution__art-screen--ghost"><div class="ph-dash"></div></div>
 			</div>
 		</div>
 		<div class="solution__tabs" role="tablist" aria-label="View by persona">
@@ -157,7 +141,7 @@
 <footer class="site-footer" role="contentinfo">
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="140" height="32"><text x="0" y="36" font-family="Inter,system-ui" font-size="34" font-weight="900" fill="#84978e">NLIGN</text></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="36" height="36" style="display:inline-block;vertical-align:middle;margin-right:10px"><path d="M30 5 L55 18 L55 42 L30 55 L5 42 L5 18 Z" fill="none" stroke="#84978e" stroke-width="3"/><path d="M30 12 L48 22 L40 38 L20 38 L12 22 Z" fill="none" stroke="#f3491b" stroke-width="2"/></svg><span style="display:inline-block;vertical-align:middle;color:#84978e;font-weight:900;font-size:28px;letter-spacing:0.02em;">NLIGN</span>
 		</div>
 		<nav class="site-footer__col"><h2 class="site-footer__col-title">Platform</h2><ul class="site-footer__menu"><li><a>Overview</a></li><li><a>How NLign Works</a></li><li><a>Technology</a></li></ul></nav>
 		<nav class="site-footer__col"><h2 class="site-footer__col-title">Solutions</h2><ul class="site-footer__menu"><li><a>Production</a></li><li><a>Sustainment</a></li><li><a>Quality &amp; MRB</a></li><li><a>Fleet Operations</a></li></ul></nav>

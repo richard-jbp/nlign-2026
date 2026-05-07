@@ -37,17 +37,18 @@
 		margin-bottom: $space-8;
 	}
 
-	// ---- Layered dashboard art (3 stacked screens, offset right & down) -----
+	// ---- Layered dashboard art ---------------------------------------------
+	// Mockup composition: a "fan" of 4 dashboards angling out from the front-
+	// left to the back-right. Each successive layer steps right, up, smaller
+	// and more transparent, creating a clear depth hierarchy.
 	&__art {
 		position: relative;
-		// Aspect-ratio drives intrinsic size — no fixed px heights.
 		aspect-ratio: 4 / 3;
-		// Big enough so the dashboards read on desktop.
-		min-height: 520px;
+		min-height: 540px;
 
 		@include bp.down(laptop) {
 			min-height: 420px;
-			max-width: 720px;
+			max-width: 760px;
 			margin-inline: auto;
 		}
 
@@ -57,48 +58,67 @@
 			box-shadow: $shadow-lg;
 			background: $nlign-bg-soft;
 			overflow: hidden;
-			border: 1px solid rgba(255, 255, 255, .06);
+			border: 1px solid rgba(255, 255, 255, .08);
+			aspect-ratio: 16 / 10;
 
 			img { width: 100%; height: 100%; object-fit: cover; display: block; }
 		}
 
-		// Front screen sits front-left at full prominence; the others step back-right.
+		// Front-most screen — the "hero" dashboard. Largest, fully opaque.
 		&-screen--front {
-			left: 0;
-			top:  6%;
-			width: 70%;
-			aspect-ratio: 16 / 10;
+			left:    0%;
+			top:    14%;
+			width:  62%;
+			z-index: 4;
+		}
+		// Second layer — peeks out from behind the front, angled right.
+		&-screen--mid {
+			left:   34%;
+			top:     6%;
+			width:  46%;
+			opacity: .85;
 			z-index: 3;
 		}
-		&-screen--mid {
-			left: 30%;
-			top:  0%;
-			width: 56%;
-			aspect-ratio: 16 / 10;
-			opacity: .85;
+		// Third — further back-right, smaller, more faded.
+		&-screen--back {
+			left:   58%;
+			top:    14%;
+			width:  36%;
+			opacity: .55;
 			z-index: 2;
 		}
-		&-screen--back {
-			left: 56%;
-			top: 14%;
-			width: 44%;
-			aspect-ratio: 16 / 10;
-			opacity: .55;
+		// Fourth (deepest) — wireframe ghost, just visible at the far edge.
+		&-screen--ghost {
+			left:   76%;
+			top:    24%;
+			width:  28%;
+			opacity: .30;
 			z-index: 1;
+		}
+
+		@include bp.down(tablet) {
+			// On narrow screens, simplify: only show the front + mid layers.
+			&-screen--back, &-screen--ghost { display: none; }
+			&-screen--front { width: 78%; left: 0; top: 8%; }
+			&-screen--mid   { width: 60%; left: 36%; top: 0; }
 		}
 	}
 
 	// ---- Persona tabs --------------------------------------------------------
+	// Mockup pattern: tabs spaced widely (~80–120 px between), centred, only the
+	// active tab has an underline accent. No top border (the section is clean).
 	&__tabs {
-		margin-top: $space-12;
+		margin-top: $space-16;
 		display: flex;
 		flex-wrap: wrap;
-		gap: $space-8;
+		gap: clamp($space-6, 6vw, $space-16);
 		justify-content: center;
-		border-top: $border-thin;
-		padding-top: $space-6;
+		align-items: center;
 
-		@include bp.down(tablet) { gap: $space-4; }
+		@include bp.down(tablet) {
+			margin-top: $space-10;
+			gap: $space-6;
+		}
 	}
 
 	&__tab {
@@ -106,8 +126,8 @@
 		background: none;
 		border: 0;
 		padding: $space-2 0;
-		color: $nlign-text-faint;
-		font-size: $fz-body-sm;
+		color: $nlign-text-muted;
+		font-size: $fz-body;
 		font-weight: 500;
 		cursor: pointer;
 		position: relative;
@@ -116,19 +136,19 @@
 		&::after {
 			content: "";
 			position: absolute;
-			left: 0; right: 0; bottom: -2px;
-			height: 2px;
-			background: $nlign-orange;
+			left: 0; right: 0; bottom: -4px;
+			height: 1px;
+			background: currentColor;
 			transform: scaleX(0);
 			transform-origin: center;
-			transition: transform $dur-base $ease-out;
+			transition: transform $dur-base $ease-out, background-color $dur-base $ease-out;
 		}
 
 		&:hover, &:focus-visible { color: $nlign-text; }
 
 		&[aria-selected="true"] {
 			color: $nlign-text;
-			&::after { transform: scaleX(1); }
+			&::after { transform: scaleX(1); background: $nlign-text; }
 		}
 	}
 }

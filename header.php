@@ -24,7 +24,7 @@ declare( strict_types=1 );
 	<div class="site-header__inner">
 
 		<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-			<?php nlign_the_inline_svg( 'logo-horizontal-light' ); ?>
+			<?php nlign_the_inline_svg( 'logo-horizontal-color' ); ?>
 		</a>
 
 		<nav class="primary-nav" aria-label="<?php esc_attr_e( 'Primary', 'nlign-2026' ); ?>">

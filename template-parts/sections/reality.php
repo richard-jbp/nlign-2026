@@ -57,8 +57,10 @@ $metrics = (array) nlign_field( 'reality_metrics', $default_metrics );
 			<?php foreach ( $metrics as $m ) : ?>
 				<div class="metric" data-reveal>
 					<p class="metric__label"><?php echo esc_html( (string) ( $m['label'] ?? '' ) ); ?></p>
-					<p class="metric__figure"><?php echo esc_html( (string) ( $m['figure'] ?? '' ) ); ?></p>
-					<p class="metric__caption"><?php echo esc_html( (string) ( $m['caption'] ?? '' ) ); ?></p>
+					<div class="metric__row">
+						<p class="metric__figure"><?php echo esc_html( (string) ( $m['figure'] ?? '' ) ); ?></p>
+						<p class="metric__caption"><?php echo esc_html( (string) ( $m['caption'] ?? '' ) ); ?></p>
+					</div>
 				</div>
 			<?php endforeach; ?>
 		</div>

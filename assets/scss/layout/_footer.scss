@@ -6,6 +6,8 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/breakpoints" as bp;
 
+// Mockup pattern: brand on far-left at the same vertical position as the column
+// titles, with 5 nav columns spread across the right portion of the footer.
 .site-footer {
 	background: $nlign-bg-darker;
 	padding-block: $space-16 $space-8;
@@ -14,8 +16,9 @@
 	&__inner {
 		@include m.container;
 		display: grid;
-		grid-template-columns: minmax(180px, 1fr) repeat(5, 1fr);
+		grid-template-columns: minmax(160px, .9fr) repeat(5, minmax(0, 1fr));
 		gap: $space-10 $space-8;
+		align-items: start;
 
 		@include bp.down(desktop) {
 			grid-template-columns: 1fr 1fr 1fr;
@@ -30,10 +33,9 @@
 
 	&__brand {
 		grid-column: 1 / -1;
-
 		@include bp.up(desktop) { grid-column: 1; }
 
-		svg, img { height: 32px; width: auto; }
+		svg, img { height: 36px; width: auto; }
 	}
 
 	&__col-title {

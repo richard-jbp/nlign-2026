@@ -13,25 +13,27 @@
 	padding-block: $space-16 $space-8;
 	border-top: $border-thin;
 
+	// Mobile-first column ladder. Mockup target on desktop:
+	//   [brand] [Platform] [Solutions] [Industries] [Company] [Resources]
+	// On laptop (~900-1199) we drop to 3 cols; tablet (600-899) to 2;
+	// mobile (<600) stacks to 1.
 	&__inner {
 		@include m.container;
 		display: grid;
-		grid-template-columns: minmax(160px, .9fr) repeat(5, minmax(0, 1fr));
+		grid-template-columns: 1fr;
 		gap: $space-10 $space-8;
 		align-items: start;
 
-		@include bp.down(desktop) {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-		@include bp.down(tablet) {
-			grid-template-columns: 1fr 1fr;
-		}
-		@include bp.down(mobile) {
-			grid-template-columns: 1fr;
+		@include bp.up(tablet)  { grid-template-columns: 1fr 1fr; }
+		@include bp.up(laptop)  { grid-template-columns: 1fr 1fr 1fr; }
+		@include bp.up(desktop) {
+			grid-template-columns: minmax(160px, .9fr) repeat(5, minmax(0, 1fr));
 		}
 	}
 
 	&__brand {
+		// Span the row when stacked; sit in column 1 once the 6-column desktop
+		// grid kicks in.
 		grid-column: 1 / -1;
 		@include bp.up(desktop) { grid-column: 1; }
 

@@ -32,9 +32,12 @@ $breakpoints: (
 	@if $value == null {
 		@error "Unknown breakpoint #{$name}.";
 	}
-	@if $value == 0 {
-		@content;
-	} @else {
+	// `down` on the smallest tier (value: 0) targets nothing — there's no
+	// viewport below 0. Without this guard the @content was being emitted
+	// outside any media query, applying universally and clobbering wider
+	// rules in the cascade. (Bug fixed: footer was collapsing to 1 column
+	// at all viewports because of `bp.down(mobile)`.)
+	@if $value > 0 {
 		@media (max-width: #{$value - 1}) { @content; }
 	}
 }

@@ -1,0 +1,111 @@
+// =============================================================================
+// Hero — large headline left, diagonal-masked aircraft image stack right.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.hero {
+	position: relative;
+	background: $nlign-bg;
+	overflow: hidden;
+	padding-block: clamp(4rem, 9vw, 9rem);
+
+	&__inner {
+		@include m.container($container-max);
+		display: grid;
+		// Content column is the dominant one (matches the mockup's ~58/42 split).
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+		gap: $space-10;
+		align-items: center;
+
+		@include bp.down(laptop) {
+			grid-template-columns: 1fr;
+			gap: $space-12;
+		}
+	}
+
+	// No max-width on the content wrapper — the title needs the full column.
+	// max-width is applied to the lead and the CTA row individually below.
+	&__content { min-width: 0; }
+
+	&__title {
+		font-size: $fz-h1;
+		line-height: $lh-tight;
+		font-weight: 700;
+		letter-spacing: $tracking-tight;
+		color: $nlign-text;
+		margin-bottom: $space-6;
+		max-width: 14ch; // forces a 2-line break that mirrors the mockup
+
+		span.highlight {
+			color: $nlign-orange;
+			// Soft hyphen-friendly: keeps the orange phrase together.
+			white-space: nowrap;
+		}
+	}
+
+	&__lead {
+		color: $nlign-text-muted;
+		font-size: $fz-lead;
+		line-height: $lh-relaxed;
+		margin-bottom: $space-8;
+		max-width: 38ch;
+	}
+
+	&__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: $space-3;
+	}
+
+	// ---- Diagonal art collage on the right -----------------------------------
+	// Three images stacked at offsets, each clipped to a parallelogram so
+	// they form the "N" rhythm seen in the mockup.
+	&__art {
+		position: relative;
+		width: 100%;
+		// Driven by aspect-ratio so the collage scales with viewport, not a fixed px.
+		aspect-ratio: 5 / 7;
+		max-height: 720px;
+
+		@include bp.down(laptop) {
+			aspect-ratio: 4 / 5;
+			max-width: 560px;
+			margin-inline: auto;
+		}
+
+		&-tile {
+			position: absolute;
+			width: 78%;
+			aspect-ratio: 4 / 3;
+			overflow: hidden;
+			// Parallelogram cut in the direction of the brand "N" diagonal.
+			clip-path: polygon(22% 0, 100% 0, 78% 100%, 0 100%);
+			box-shadow: $shadow-md;
+			// When no image is present, render a tonal placeholder so the
+			// composition still reads on a fresh install.
+			background:
+				linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+				$nlign-bg-soft;
+
+			img { width: 100%; height: 100%; object-fit: cover; display: block; }
+		}
+
+		// Diagonal stagger — each tile shifts down and slightly leftward.
+		&-tile--1 { top:   0%;  right:  -4%; }
+		&-tile--2 { top:  30%;  right: 10%; }
+		&-tile--3 { top:  60%;  right:  -6%; }
+
+		@include bp.down(tablet) {
+			&-tile--1 { top:  0%;  right:   0%; width: 72%; }
+			&-tile--2 { top: 26%;  right:  18%; width: 72%; }
+			&-tile--3 { top: 52%;  right:   2%; width: 72%; }
+		}
+	}
+
+	@include m.reduce-motion {
+		&__art-tile { box-shadow: none; }
+	}
+}

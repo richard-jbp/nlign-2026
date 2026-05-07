@@ -1,0 +1,24 @@
+{
+  "fonts/Inter-Italic.woff2": {
+    "file": "fonts/Inter-Italic.woff2",
+    "src": "fonts/Inter-Italic.woff2"
+  },
+  "fonts/Inter.woff2": {
+    "file": "fonts/Inter.woff2",
+    "src": "fonts/Inter.woff2"
+  },
+  "js/main.js": {
+    "file": "main.DYkaqCC_.js",
+    "name": "main",
+    "src": "js/main.js",
+    "isEntry": true,
+    "assets": [
+      "fonts/Inter.woff2",
+      "fonts/Inter-Italic.woff2"
+    ]
+  },
+  "style.css": {
+    "file": "main.D5t8s6Ej.css",
+    "src": "style.css"
+  }
+}

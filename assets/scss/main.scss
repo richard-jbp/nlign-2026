@@ -1,0 +1,30 @@
+// =============================================================================
+// NLign 2026 — main entry. Compile order: ITCSS-ish (settings → base → layout → components → sections → utilities).
+// =============================================================================
+
+// 1. Settings & tools (no CSS output — just variables/mixins).
+@use "abstracts/tokens"      as tokens;
+@use "abstracts/breakpoints" as bp;
+@use "abstracts/mixins"      as m;
+
+// 2. Base — reset, typography, global utilities.
+@use "base/reset";
+@use "base/typography";
+@use "base/global";
+
+// 3. Components — small reusable units.
+@use "components/buttons";
+@use "components/eyebrow";
+@use "components/metric";
+
+// 4. Layout — header, footer, container chrome.
+@use "layout/header";
+@use "layout/footer";
+
+// 5. Sections — homepage modules in their natural reading order.
+@use "sections/hero";
+@use "sections/reality";
+@use "sections/solution";
+@use "sections/trusted-by";
+@use "sections/impact";
+@use "sections/cta-bar";

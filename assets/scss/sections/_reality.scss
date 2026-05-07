@@ -1,0 +1,49 @@
+// =============================================================================
+// "The Reality" — problem statement + 4 metric rows.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.reality {
+	background: $nlign-bg;
+	padding-block: clamp(4rem, 8vw, 8rem);
+
+	&__inner { @include m.container; }
+
+	&__intro {
+		display: grid;
+		grid-template-columns: 1.4fr 1fr;
+		gap: $space-12;
+		align-items: end;
+		margin-bottom: $space-16;
+
+		@include bp.down(laptop) {
+			grid-template-columns: 1fr;
+			gap: $space-6;
+			margin-bottom: $space-12;
+		}
+	}
+
+	&__title {
+		font-size: $fz-h2;
+		line-height: $lh-snug;
+		color: $nlign-text;
+		max-width: 18ch;
+
+		span.accent { color: $nlign-orange; }
+	}
+
+	&__supporting {
+		color: $nlign-text-muted;
+		font-size: $fz-body-sm;
+		line-height: $lh-relaxed;
+		max-width: 32ch;
+	}
+
+	&__metrics {
+		display: grid;
+		gap: 0;
+	}
+}

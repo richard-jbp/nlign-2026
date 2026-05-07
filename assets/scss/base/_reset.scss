@@ -1,0 +1,82 @@
+// =============================================================================
+// Reset — modern CSS reset (Andy Bell-inspired) + theme-specific defaults.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html, body { height: 100%; }
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	scroll-behavior: smooth;
+
+	@media (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: $font-sans;
+	font-size: $fz-body;
+	line-height: $lh-base;
+	color: $nlign-text-muted;
+	background-color: $nlign-bg;
+	overflow-x: hidden; // belt-and-braces; sections should already not overflow
+}
+
+img, picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+input, button, textarea, select {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: rgba(255,255,255,.4);
+	text-underline-offset: 3px;
+	transition: color $dur-base $ease-out;
+}
+
+a:hover { color: $nlign-orange; }
+
+// Body text may break long words to avoid horizontal scroll.
+p { overflow-wrap: break-word; }
+
+// Headings should never break mid-word — let the line overflow if needed,
+// designers handle this with explicit copy length, not CSS hacks.
+h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: normal;
+	word-break: normal;
+	hyphens: none;
+	text-wrap: balance; // distribute text across lines for nicer ragged edges
+}
+
+#root, #__next { isolation: isolate; }
+
+// Honour reduced motion globally.
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: .01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: .01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

@@ -1,0 +1,48 @@
+// =============================================================================
+// .metric — used in "The Reality" and "The Impact" sections.
+// Each row: small uppercase label (orange) + giant figure + supporting text,
+// separated by a horizontal divider.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.metric {
+	display: grid;
+	// Tighter mockup proportions: narrow eyebrow column, then figure pulled
+	// close to it, then the caption uses whatever width remains.
+	grid-template-columns: minmax(180px, 260px) minmax(180px, 320px) minmax(0, 1fr);
+	align-items: baseline;
+	gap: $space-4 $space-10;
+	padding-block: $space-6;
+	border-bottom: $border-thin;
+
+	&:first-child { border-top: $border-thin; }
+
+	@include bp.down(tablet) {
+		grid-template-columns: 1fr;
+		gap: $space-2;
+		padding-block: $space-5;
+	}
+
+	&__label {
+		@include m.eyebrow-style;
+		margin: 0;
+	}
+
+	&__figure {
+		font-size: clamp(2.5rem, 1.5rem + 4.5vw, 4.5rem);
+		font-weight: 300;
+		color: $nlign-text;
+		line-height: 1;
+		letter-spacing: $tracking-tight;
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__caption {
+		color: $nlign-text-muted;
+		font-size: $fz-body-sm;
+		max-width: 36ch;
+	}
+}

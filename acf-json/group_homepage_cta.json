@@ -1,0 +1,19 @@
+{
+	"key": "group_homepage_cta",
+	"title": "Homepage — Closing CTA",
+	"fields": [
+		{ "key": "field_cta_eyebrow",    "label": "Eyebrow",         "name": "cta_eyebrow",    "type": "text",     "default_value": "A Single, Trusted View of Your Most Precious Assets" },
+		{ "key": "field_cta_title_lead", "label": "Title (no dot)",  "name": "cta_title_lead", "type": "text",     "default_value": "Bring Engineered Clarity to Complex Operations" },
+		{ "key": "field_cta_title_dot",  "label": "Final accent",    "name": "cta_title_dot",  "type": "text",     "default_value": ".", "instructions": "Rendered in the brand orange. Default: full stop." },
+		{
+			"key": "field_cta_button", "label": "Button", "name": "cta_button", "type": "group",
+			"sub_fields": [
+				{ "key": "field_cta_b_label", "label": "Label", "name": "label", "type": "text", "default_value": "Book Demo" },
+				{ "key": "field_cta_b_url",   "label": "URL",   "name": "url",   "type": "url",  "default_value": "#book-demo" }
+			]
+		}
+	],
+	"location": [ [ { "param": "page_type", "operator": "==", "value": "front_page" } ] ],
+	"menu_order": 50,
+	"active": true
+}

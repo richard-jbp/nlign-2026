@@ -1,0 +1,16 @@
+{
+	"key": "group_site_options",
+	"title": "Site Options",
+	"fields": [
+		{
+			"key": "field_header_cta", "label": "Header CTA", "name": "header_cta", "type": "group",
+			"instructions": "Button shown at the top right of the site header. Falls back to 'Book Demo' if empty.",
+			"sub_fields": [
+				{ "key": "field_header_cta_label", "label": "Label", "name": "label", "type": "text", "default_value": "Book Demo" },
+				{ "key": "field_header_cta_url",   "label": "URL",   "name": "url",   "type": "url",  "default_value": "#book-demo" }
+			]
+		}
+	],
+	"location": [ [ { "param": "options_page", "operator": "==", "value": "site-options" } ] ],
+	"active": true
+}

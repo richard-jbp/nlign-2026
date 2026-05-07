@@ -1,0 +1,58 @@
+// =============================================================================
+// Global utility classes — used across sections.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.container          { @include m.container; }
+.container--narrow  { @include m.container(960px); }
+.container--wide    { @include m.container(1440px); }
+
+// Above the XL breakpoint (1536+), let the wide container breathe a little
+// further without stretching tighter sections — keeps the hero/section type
+// proportions intact on ultra-wide displays.
+@include bp.up(xl) {
+	.container--wide { max-width: 1640px; }
+}
+
+.eyebrow            { @include m.eyebrow-style; }
+.eyebrow--muted     { color: $nlign-text-faint; }
+
+.text-orange        { color: $nlign-orange; }
+.text-muted         { color: $nlign-text-muted; }
+.text-faint         { color: $nlign-text-faint; }
+
+.section            { @include m.section-padding; }
+.section--soft      { background-color: $nlign-bg-elevated; }
+.section--darker    { background-color: $nlign-bg-darker; }
+
+.divider            { height: 1px; background: $nlign-divider; border: 0; }
+
+// Skip-link (a11y).
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: $space-4;
+	z-index: $z-toast;
+	background: $nlign-orange;
+	color: $nlign-text;
+	padding: $space-2 $space-4;
+	border-radius: $radius-sm;
+	font-weight: 600;
+	transition: top $dur-base $ease-out;
+
+	&:focus { top: $space-4; }
+}
+
+// Visually hidden helper.
+.sr-only { @include m.sr-only; }
+
+// Focus management — keyboard users only.
+:focus { outline: 2px solid transparent; }
+:focus-visible {
+	outline: 2px solid $nlign-orange;
+	outline-offset: 3px;
+	border-radius: $radius-sm;
+}

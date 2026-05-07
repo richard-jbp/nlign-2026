@@ -1,0 +1,42 @@
+{
+	"key": "group_homepage_hero",
+	"title": "Homepage — Hero",
+	"fields": [
+		{ "key": "field_hero_eyebrow",         "label": "Eyebrow (optional)", "name": "hero_eyebrow",        "type": "text",     "instructions": "Small uppercase tag above the title. Leave empty to hide." },
+		{ "key": "field_hero_title_lead",      "label": "Title — orange part", "name": "hero_title_lead",    "type": "text",     "default_value": "Operational Truth", "required": 1 },
+		{ "key": "field_hero_title_highlight", "label": "Title — white part",  "name": "hero_title_highlight","type": "text",     "default_value": "for Mission-Critical Assets", "required": 1 },
+		{ "key": "field_hero_lead",            "label": "Lead paragraph",      "name": "hero_lead",           "type": "textarea", "rows": 3, "default_value": "Digital Twin–Driven Asset Intelligence that enables faster, safer, and more confident decisions." },
+		{
+			"key": "field_hero_primary_cta", "label": "Primary CTA (Book Demo)", "name": "hero_primary_cta", "type": "group",
+			"sub_fields": [
+				{ "key": "field_hero_pcta_label",  "label": "Label",  "name": "label",  "type": "text", "default_value": "Book Demo" },
+				{ "key": "field_hero_pcta_url",    "label": "URL",    "name": "url",    "type": "url",  "default_value": "#book-demo" },
+				{ "key": "field_hero_pcta_target", "label": "Target", "name": "target", "type": "select", "choices": { "": "Same window", "_blank": "New tab" }, "default_value": "" }
+			]
+		},
+		{
+			"key": "field_hero_secondary_cta", "label": "Secondary CTA (Watch Overview)", "name": "hero_secondary_cta", "type": "group",
+			"sub_fields": [
+				{ "key": "field_hero_scta_label",  "label": "Label",  "name": "label",  "type": "text", "default_value": "Watch Overview" },
+				{ "key": "field_hero_scta_url",    "label": "URL",    "name": "url",    "type": "url",  "default_value": "#watch" },
+				{ "key": "field_hero_scta_target", "label": "Target", "name": "target", "type": "select", "choices": { "": "Same window", "_blank": "New tab" }, "default_value": "" }
+			]
+		},
+		{
+			"key": "field_hero_art", "label": "Hero artwork (up to 3 images)", "name": "hero_art", "type": "gallery",
+			"return_format": "array", "min": 0, "max": 3,
+			"instructions": "Upload up to 3 images. They will be stacked on a diagonal in the right column on desktop."
+		}
+	],
+	"location": [
+		[
+			{ "param": "page_type", "operator": "==", "value": "front_page" }
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"hide_on_screen": [],
+	"active": true
+}

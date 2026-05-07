@@ -1,0 +1,22 @@
+{
+	"key": "group_homepage_reality",
+	"title": "Homepage — The Reality",
+	"fields": [
+		{ "key": "field_reality_eyebrow",      "label": "Eyebrow",          "name": "reality_eyebrow",      "type": "text",     "default_value": "The Reality" },
+		{ "key": "field_reality_title_lead",   "label": "Title — neutral",  "name": "reality_title_lead",   "type": "text",     "default_value": "Operational friction creates" },
+		{ "key": "field_reality_title_accent", "label": "Title — orange",   "name": "reality_title_accent", "type": "text",     "default_value": "real consequences." },
+		{ "key": "field_reality_supporting",   "label": "Supporting copy",  "name": "reality_supporting",   "type": "textarea", "rows": 3, "default_value": "Disconnected data, manual workflows, and siloed systems slow teams down and drive up cost across the asset lifecycle." },
+		{
+			"key": "field_reality_metrics", "label": "Metrics", "name": "reality_metrics", "type": "repeater",
+			"min": 1, "max": 6, "layout": "block", "button_label": "Add metric",
+			"sub_fields": [
+				{ "key": "field_reality_m_label",   "label": "Label (uppercase)",   "name": "label",   "type": "text", "required": 1 },
+				{ "key": "field_reality_m_figure",  "label": "Headline figure",     "name": "figure",  "type": "text", "required": 1, "instructions": "e.g. 2–5x, 20–30%" },
+				{ "key": "field_reality_m_caption", "label": "Caption",             "name": "caption", "type": "text" }
+			]
+		}
+	],
+	"location": [ [ { "param": "page_type", "operator": "==", "value": "front_page" } ] ],
+	"menu_order": 10,
+	"active": true
+}

@@ -1,0 +1,157 @@
+// =============================================================================
+// Site header — sticky, dark, with a primary nav and Book Demo CTA.
+// Mobile: collapses to a hamburger that toggles a full-bleed overlay.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: $z-header;
+	background: rgba(11, 12, 13, .85);
+	backdrop-filter: saturate(180%) blur(8px);
+	border-bottom: 1px solid transparent;
+	transition: border-color $dur-base $ease-out, background-color $dur-base $ease-out;
+
+	&.is-scrolled {
+		background: rgba(11, 12, 13, .95);
+		border-bottom-color: $nlign-divider;
+	}
+
+	&__inner {
+		@include m.container($container-max);
+		display: flex;
+		align-items: center;
+		gap: $space-6;
+		min-height: 72px;
+		padding-block: $space-3;
+
+		@include bp.down(laptop) { min-height: 64px; }
+	}
+
+	&__logo {
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+
+		svg, img { height: 28px; width: auto; }
+	}
+}
+
+// ---------- Primary nav -----------------------------------------------------
+
+.primary-nav {
+	margin-inline-start: auto;
+	display: flex;
+	align-items: center;
+	gap: $space-8;
+
+	@include bp.down(laptop) {
+		display: none; // replaced by mobile drawer
+	}
+
+	&__list {
+		@include m.reset-list;
+		display: flex;
+		align-items: center;
+		gap: $space-6;
+	}
+
+	&__link {
+		display: inline-block;
+		padding: $space-2 0;
+		font-size: $fz-body-sm;
+		font-weight: 500;
+		color: $nlign-text;
+		text-decoration: none;
+		position: relative;
+		transition: color $dur-base $ease-out;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0; right: 0; bottom: 0;
+			height: 2px;
+			background: $nlign-orange;
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform $dur-base $ease-out;
+		}
+
+		&:hover, &:focus-visible {
+			color: $nlign-orange;
+			&::after { transform: scaleX(1); }
+		}
+	}
+
+	&__item.is-current .primary-nav__link {
+		color: $nlign-orange;
+	}
+}
+
+// ---------- Mobile drawer ---------------------------------------------------
+
+.mobile-toggle {
+	display: none;
+	margin-inline-start: auto;
+	width: 44px;
+	height: 44px;
+	border-radius: $radius-sm;
+
+	@include bp.down(laptop) { display: inline-flex; align-items: center; justify-content: center; }
+
+	&__bars, &__bars::before, &__bars::after {
+		content: "";
+		display: block;
+		width: 22px;
+		height: 2px;
+		background: $nlign-text;
+		transition: transform $dur-base $ease-out, opacity $dur-fast $ease-out;
+	}
+	&__bars::before { transform: translateY(-7px); }
+	&__bars::after  { transform: translateY( 5px); }
+
+	&[aria-expanded="true"] {
+		.mobile-toggle__bars            { background: transparent; }
+		.mobile-toggle__bars::before    { transform: translateY(0) rotate(45deg); }
+		.mobile-toggle__bars::after     { transform: translateY(-2px) rotate(-45deg); }
+	}
+}
+
+.mobile-drawer {
+	position: fixed;
+	inset: 64px 0 0 0;
+	background: $nlign-bg-darker;
+	padding: $space-8 $space-6;
+	transform: translateY(-110%);
+	transition: transform $dur-slow $ease-out;
+	z-index: $z-overlay;
+	overflow-y: auto;
+
+	&.is-open { transform: translateY(0); }
+
+	&__list {
+		@include m.reset-list;
+		display: grid;
+		gap: $space-2;
+	}
+
+	&__link {
+		display: block;
+		padding: $space-4 0;
+		font-size: $fz-h5;
+		font-weight: 600;
+		color: $nlign-text;
+		text-decoration: none;
+		border-bottom: $border-thin;
+
+		&:hover { color: $nlign-orange; }
+	}
+
+	&__cta { margin-top: $space-8; }
+
+	@include bp.up(laptop) { display: none; }
+}

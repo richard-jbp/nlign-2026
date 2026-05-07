@@ -1,0 +1,71 @@
+// =============================================================================
+// "The Impact" — title left, stacked metric rows right.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.impact {
+	background: $nlign-bg;
+	padding-block: clamp(4rem, 8vw, 8rem);
+
+	&__inner {
+		@include m.container;
+		display: grid;
+		grid-template-columns: 1fr 1.1fr;
+		gap: $space-16;
+		align-items: start;
+
+		@include bp.down(laptop) {
+			grid-template-columns: 1fr;
+			gap: $space-10;
+		}
+	}
+
+	&__title {
+		font-size: $fz-h2;
+		max-width: 14ch;
+	}
+
+	&__metrics { @include m.reset-list; }
+
+	// Metric variant for impact: small uppercase label hugs the figure.
+	// Label sits right-aligned in column 1; figure left-aligned in column 2.
+	// This keeps the two parts visually paired (like the mockup) instead of
+	// stretching them across the width of the row.
+	&__metric {
+		display: grid;
+		grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+		align-items: baseline;
+		gap: $space-8;
+		padding-block: $space-5;
+		border-bottom: $border-thin;
+
+		&:first-child { border-top: $border-thin; }
+
+		@include bp.down(tablet) {
+			grid-template-columns: 1fr;
+			gap: $space-1;
+		}
+	}
+
+	&__metric-label {
+		@include m.eyebrow-style;
+		margin: 0;
+		text-align: right;
+		max-width: 100%;
+
+		@include bp.down(tablet) { text-align: left; }
+	}
+
+	&__metric-figure {
+		font-size: clamp(2.75rem, 1.4rem + 5vw, 5.5rem);
+		font-weight: 300;
+		color: $nlign-text;
+		line-height: 1;
+		justify-self: start;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: $tracking-tight;
+	}
+}

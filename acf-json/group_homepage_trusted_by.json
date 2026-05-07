@@ -1,0 +1,15 @@
+{
+	"key": "group_homepage_trusted_by",
+	"title": "Homepage — Trusted By",
+	"fields": [
+		{ "key": "field_trusted_label", "label": "Label", "name": "trusted_by_label", "type": "text", "default_value": "Trusted by" },
+		{
+			"key": "field_trusted_logos", "label": "Customer logos", "name": "trusted_by_logos", "type": "gallery",
+			"return_format": "array", "min": 0, "max": 12,
+			"instructions": "Use SVG or transparent-PNG marks. They will be desaturated and brighten on hover."
+		}
+	],
+	"location": [ [ { "param": "page_type", "operator": "==", "value": "front_page" } ] ],
+	"menu_order": 30,
+	"active": true
+}

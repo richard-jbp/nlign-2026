@@ -1,0 +1,58 @@
+// =============================================================================
+// Typography
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+
+@font-face {
+	font-family: "Inter";
+	src: url("../fonts/Inter.woff2") format("woff2-variations");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("../fonts/Inter-Italic.woff2") format("woff2-variations");
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+// Self-hosted fallback metric override — reduces CLS while Inter loads.
+@font-face {
+	font-family: "Inter Fallback";
+	src: local("Arial");
+	size-adjust: 107%;
+	ascent-override: 90%;
+	descent-override: 22%;
+	line-gap-override: 0%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	color: $nlign-text;
+	line-height: $lh-tight;
+	letter-spacing: $tracking-tight;
+	margin: 0;
+}
+
+h1 { font-size: $fz-h1; }
+h2 { font-size: $fz-h2; }
+h3 { font-size: $fz-h3; }
+h4 { font-size: $fz-h4; }
+h5 { font-size: $fz-h5; }
+h6 { font-size: $fz-h6; }
+
+p { line-height: $lh-relaxed; }
+
+::selection {
+	background: $nlign-orange;
+	color: $nlign-text;
+}
+
+::-moz-selection {
+	background: $nlign-orange;
+	color: $nlign-text;
+}

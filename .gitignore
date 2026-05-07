@@ -1,0 +1,23 @@
+# Dependencies — installed locally with `npm install`
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs & temp
+*.log
+*.zip
+*.tgz
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# We DO commit /assets/dist so the theme is deploy-ready without a build step.
+# GitHub Pages and shared hosting both rely on the prebuilt CSS/JS being present.
+# Re-enable `assets/dist/` here only if you decide to switch to a CI-build flow.
+

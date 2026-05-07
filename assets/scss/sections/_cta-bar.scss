@@ -1,0 +1,38 @@
+// =============================================================================
+// CTA bar — final headline + Book Demo, sits above footer.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.cta-bar {
+	background: $nlign-bg-elevated;
+	padding-block: clamp(3rem, 6vw, 6rem);
+	border-top: $border-thin;
+	border-bottom: $border-thin;
+
+	&__inner {
+		@include m.container;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: $space-10;
+		align-items: center;
+
+		@include bp.down(tablet) {
+			grid-template-columns: 1fr;
+			gap: $space-6;
+		}
+	}
+
+	&__title {
+		font-size: $fz-h3;
+		line-height: $lh-snug;
+		max-width: 24ch;
+		margin-bottom: $space-3;
+
+		.dot { color: $nlign-orange; }
+	}
+
+	&__eyebrow { @include m.eyebrow-style; margin: 0; }
+}

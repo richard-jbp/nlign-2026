@@ -1,0 +1,19 @@
+{
+	"key": "group_homepage_impact",
+	"title": "Homepage — The Impact",
+	"fields": [
+		{ "key": "field_impact_eyebrow", "label": "Eyebrow", "name": "impact_eyebrow", "type": "text", "default_value": "The Impact" },
+		{ "key": "field_impact_title",   "label": "Title",   "name": "impact_title",   "type": "text", "default_value": "Real-World Customer Results" },
+		{
+			"key": "field_impact_metrics", "label": "Result metrics", "name": "impact_metrics", "type": "repeater",
+			"min": 1, "max": 8, "layout": "block", "button_label": "Add metric",
+			"sub_fields": [
+				{ "key": "field_impact_m_label",  "label": "Label",  "name": "label",  "type": "text", "required": 1 },
+				{ "key": "field_impact_m_figure", "label": "Figure", "name": "figure", "type": "text", "required": 1 }
+			]
+		}
+	],
+	"location": [ [ { "param": "page_type", "operator": "==", "value": "front_page" } ] ],
+	"menu_order": 40,
+	"active": true
+}

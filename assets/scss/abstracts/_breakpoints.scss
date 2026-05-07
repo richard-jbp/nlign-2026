@@ -1,0 +1,46 @@
+// =============================================================================
+// Breakpoints
+// -----------------------------------------------------------------------------
+// Five tiers per spec. Mobile-first: write base styles for mobile, layer up.
+// Use `@include up(<name>)` rather than the SCSS map directly.
+// =============================================================================
+
+@use "sass:map";
+
+$breakpoints: (
+	"mobile":   0,        // 0 – 599  (handset)
+	"tablet":   600px,    // 600 – 899
+	"laptop":   900px,    // 900 – 1199 (small laptop / large tablet landscape)
+	"desktop":  1200px,   // 1200 – 1535
+	"xl":       1536px,   // 1536+ (large desktop)
+);
+
+@mixin up($name) {
+	$value: map.get($breakpoints, $name);
+	@if $value == null {
+		@error "Unknown breakpoint #{$name}. Allowed: #{map.keys($breakpoints)}.";
+	}
+	@if $value == 0 {
+		@content;
+	} @else {
+		@media (min-width: #{$value}) { @content; }
+	}
+}
+
+@mixin down($name) {
+	$value: map.get($breakpoints, $name);
+	@if $value == null {
+		@error "Unknown breakpoint #{$name}.";
+	}
+	@if $value == 0 {
+		@content;
+	} @else {
+		@media (max-width: #{$value - 1}) { @content; }
+	}
+}
+
+@mixin between($from, $to) {
+	$min: map.get($breakpoints, $from);
+	$max: map.get($breakpoints, $to);
+	@media (min-width: #{$min}) and (max-width: #{$max - 1}) { @content; }
+}

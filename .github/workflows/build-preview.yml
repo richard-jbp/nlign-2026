@@ -1,0 +1,51 @@
+name: Build & publish preview
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SCSS + JS bundle
+        run: npm run build
+
+      - name: Sync built CSS into /docs/dist for GitHub Pages
+        run: |
+          mkdir -p docs/dist docs/fonts
+          # Copy the latest hashed CSS as a stable name docs/index.html consumes
+          cp "$(ls -t assets/dist/main.*.css | head -1)" docs/dist/main.css
+          # Fix font URL (CSS uses ../fonts/, docs uses fonts/)
+          sed -i 's|../fonts/|fonts/|g' docs/dist/main.css
+          cp assets/fonts/*.woff2 docs/fonts/
+
+      - name: Commit preview if it changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain docs/)" ]]; then
+            git add docs/
+            git commit -m "chore(preview): rebuild docs/ from latest SCSS"
+            git push
+          else
+            echo "No preview changes."
+          fi

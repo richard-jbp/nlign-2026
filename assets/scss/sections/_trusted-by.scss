@@ -1,0 +1,50 @@
+// =============================================================================
+// "Trusted by" — eyebrow + horizontal logo strip.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.trusted-by {
+	background: $nlign-bg-elevated;
+	padding-block: $space-10;
+	border-top: $border-thin;
+	border-bottom: $border-thin;
+
+	&__inner {
+		@include m.container;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: $space-10;
+	}
+
+	&__label { @include m.eyebrow-style; margin: 0; flex-shrink: 0; }
+
+	&__logos {
+		@include m.reset-list;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: clamp($space-6, 5vw, $space-12);
+		flex: 1 1 auto;
+
+		@include bp.down(tablet) {
+			justify-content: center;
+			width: 100%;
+		}
+
+		li { line-height: 0; }
+
+		img, svg {
+			max-height: 28px;
+			width: auto;
+			opacity: .85;
+			filter: grayscale(100%);
+			transition: opacity $dur-base $ease-out, filter $dur-base $ease-out;
+
+			&:hover { opacity: 1; filter: grayscale(0%); }
+		}
+	}
+}

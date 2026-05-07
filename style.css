@@ -1,0 +1,18 @@
+/*
+Theme Name:        NLign 2026
+Theme URI:         https://nlign.com
+Author:            GlobalizeMe
+Author URI:        https://globalizeme.com
+Description:       Custom WordPress theme for NLign Analytics. Built from supplied design mockups; no page builders. Modular section architecture, ACF Pro for editable content, Inter variable font, dark-mode design system. SCSS + Vite build pipeline. WCAG-aware, performance-tuned, scalable to additional templates.
+Version:           1.0.0
+Requires at least: 6.4
+Tested up to:      6.6
+Requires PHP:      8.1
+License:           Proprietary — © NLign Analytics. All rights reserved.
+Text Domain:       nlign-2026
+Tags:              custom, full-site-editing-ready, accessibility-ready, dark-mode
+
+This file is intentionally minimal. All compiled CSS is loaded from /assets/dist/main.css
+via wp_enqueue_style() in /inc/enqueue.php. Editing this file directly will not affect
+the front-end — edit /assets/scss/main.scss and run `npm run build`.
+*/

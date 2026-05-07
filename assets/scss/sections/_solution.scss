@@ -1,0 +1,134 @@
+// =============================================================================
+// "The Solution" — copy left, layered dashboard mockup right, persona tabs.
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/breakpoints" as bp;
+
+.solution {
+	background: $nlign-bg-elevated;
+	padding-block: clamp(4rem, 8vw, 8rem);
+
+	&__inner { @include m.container; }
+
+	&__grid {
+		display: grid;
+		// Mockup ratio: copy column ~38%, art column ~62%.
+		grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr);
+		gap: $space-16;
+		align-items: center;
+
+		@include bp.down(laptop) {
+			grid-template-columns: 1fr;
+			gap: $space-10;
+		}
+	}
+
+	&__title {
+		font-size: $fz-h2;
+		max-width: 14ch;
+		margin-bottom: $space-6;
+	}
+
+	&__lead {
+		color: $nlign-text-muted;
+		max-width: 36ch;
+		margin-bottom: $space-8;
+	}
+
+	// ---- Layered dashboard art (3 stacked screens, offset right & down) -----
+	&__art {
+		position: relative;
+		// Aspect-ratio drives intrinsic size — no fixed px heights.
+		aspect-ratio: 4 / 3;
+		// Big enough so the dashboards read on desktop.
+		min-height: 520px;
+
+		@include bp.down(laptop) {
+			min-height: 420px;
+			max-width: 720px;
+			margin-inline: auto;
+		}
+
+		&-screen {
+			position: absolute;
+			border-radius: $radius-md;
+			box-shadow: $shadow-lg;
+			background: $nlign-bg-soft;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, .06);
+
+			img { width: 100%; height: 100%; object-fit: cover; display: block; }
+		}
+
+		// Front screen sits front-left at full prominence; the others step back-right.
+		&-screen--front {
+			left: 0;
+			top:  6%;
+			width: 70%;
+			aspect-ratio: 16 / 10;
+			z-index: 3;
+		}
+		&-screen--mid {
+			left: 30%;
+			top:  0%;
+			width: 56%;
+			aspect-ratio: 16 / 10;
+			opacity: .85;
+			z-index: 2;
+		}
+		&-screen--back {
+			left: 56%;
+			top: 14%;
+			width: 44%;
+			aspect-ratio: 16 / 10;
+			opacity: .55;
+			z-index: 1;
+		}
+	}
+
+	// ---- Persona tabs --------------------------------------------------------
+	&__tabs {
+		margin-top: $space-12;
+		display: flex;
+		flex-wrap: wrap;
+		gap: $space-8;
+		justify-content: center;
+		border-top: $border-thin;
+		padding-top: $space-6;
+
+		@include bp.down(tablet) { gap: $space-4; }
+	}
+
+	&__tab {
+		appearance: none;
+		background: none;
+		border: 0;
+		padding: $space-2 0;
+		color: $nlign-text-faint;
+		font-size: $fz-body-sm;
+		font-weight: 500;
+		cursor: pointer;
+		position: relative;
+		transition: color $dur-base $ease-out;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0; right: 0; bottom: -2px;
+			height: 2px;
+			background: $nlign-orange;
+			transform: scaleX(0);
+			transform-origin: center;
+			transition: transform $dur-base $ease-out;
+		}
+
+		&:hover, &:focus-visible { color: $nlign-text; }
+
+		&[aria-selected="true"] {
+			color: $nlign-text;
+			&::after { transform: scaleX(1); }
+		}
+	}
+}

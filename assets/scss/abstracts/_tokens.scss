@@ -1,0 +1,112 @@
+// =============================================================================
+// Design tokens
+// -----------------------------------------------------------------------------
+// Single source of truth for colour, spacing, type, motion. All component SCSS
+// references these — never hardcode raw hex/px values in component files.
+//
+// Tokens are mirrored as CSS custom properties on :root (see base/_tokens.scss)
+// so the JS layer can read them and (later) so a child theme can recolour
+// without recompiling.
+// =============================================================================
+
+// ---------- Brand & UI palette ----------------------------------------------
+// Brand pulled from the supplied SVG logos (`fill: #f3491b` and `#84978e`).
+// Surface palette derived from the homepage mockup (dark theme dominant).
+
+$nlign-orange:        #f3491b;   // Primary accent / CTA / heading highlight
+$nlign-orange-700:    #c9380F;   // Hover / pressed
+$nlign-sage:          #84978e;   // Secondary surface (Book Demo button, logo neutral)
+$nlign-sage-700:      #6d8077;   // Hover
+
+$nlign-bg:            #0b0c0d;   // Page background (closest to mockup)
+$nlign-bg-elevated:   #131517;   // Card / band differentiation
+$nlign-bg-soft:       #1a1c1f;   // Tertiary surface (also used as `text-on-sage`)
+$nlign-bg-darker:     #060708;   // Footer / deep band
+$nlign-ink-on-sage:   $nlign-bg-soft; // Dark ink that reads on the sage button
+
+$nlign-text:          #ffffff;
+$nlign-text-muted:    #c7cad0;   // Body copy on dark
+$nlign-text-faint:    #8a8e96;   // Captions / footer links
+$nlign-divider:       rgba(255, 255, 255, .10);
+$nlign-divider-strong:rgba(255, 255, 255, .18);
+
+$nlign-success:       #2a9d8f;
+$nlign-warning:       #f4a261;
+$nlign-danger:        #e63946;
+
+// ---------- Spacing scale (4 / 8-pt grid) -----------------------------------
+$space-0:   0;
+$space-1:   .25rem;   // 4
+$space-2:   .5rem;    // 8
+$space-3:   .75rem;   // 12
+$space-4:   1rem;     // 16
+$space-5:   1.25rem;  // 20
+$space-6:   1.5rem;   // 24
+$space-8:   2rem;     // 32
+$space-10:  2.5rem;   // 40
+$space-12:  3rem;     // 48
+$space-16:  4rem;     // 64
+$space-20:  5rem;     // 80
+$space-24:  6rem;     // 96
+$space-32:  8rem;     // 128
+$space-40: 10rem;     // 160 — section padding on desktop
+
+// ---------- Container & layout ----------------------------------------------
+$container-max:       1280px;
+$container-pad-x:     clamp(1.25rem, 4vw, 3rem);
+$section-gap-y:       clamp(4rem, 9vw, 9rem);
+
+// ---------- Typography ------------------------------------------------------
+$font-sans: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI",
+            Roboto, "Helvetica Neue", Arial, sans-serif;
+
+// Fluid type scale (viewport-locked). Floor / ceiling chosen to match mockup
+// at 320px (mobile S) and 1440px (mockup width).
+$fz-eyebrow:    clamp(.75rem,  .65rem + .35vw, .875rem);   // 12–14
+$fz-body-sm:    clamp(.875rem, .82rem + .25vw, 1rem);      // 14–16
+$fz-body:       clamp(1rem,    .94rem + .30vw, 1.125rem);  // 16–18
+$fz-lead:       clamp(1.125rem,1rem + .60vw, 1.375rem);    // 18–22
+$fz-h6:         clamp(1rem,    .92rem + .40vw, 1.25rem);
+$fz-h5:         clamp(1.125rem,.98rem + .70vw, 1.5rem);
+$fz-h4:         clamp(1.5rem,  1.30rem + .85vw, 2rem);
+$fz-h3:         clamp(1.875rem,1.55rem + 1.4vw, 2.75rem);  // 30–44
+$fz-h2:         clamp(2.25rem, 1.75rem + 2.1vw, 3.75rem);  // 36–60
+$fz-h1:         clamp(2.75rem, 1.90rem + 3.6vw, 5rem);     // 44–80 (hero)
+
+$lh-tight:      1.04;
+$lh-snug:       1.15;
+$lh-base:       1.5;
+$lh-relaxed:    1.65;
+
+$tracking-tight:   -0.02em;
+$tracking-base:    0;
+$tracking-eyebrow: 0.16em;
+
+// ---------- Radii / borders / shadows ---------------------------------------
+$radius-sm:  4px;
+$radius-md:  6px;
+$radius-lg:  10px;
+$radius-pill:9999px;
+
+$border-thin:  1px solid $nlign-divider;
+$border-strong:1px solid $nlign-divider-strong;
+
+$shadow-sm: 0 2px  6px rgba(0,0,0,.30);
+$shadow-md: 0 6px 18px rgba(0,0,0,.35);
+$shadow-lg: 0 16px 40px rgba(0,0,0,.45);
+
+// ---------- Motion ----------------------------------------------------------
+$ease-out:    cubic-bezier(.22, 1,    .36, 1);
+$ease-in-out: cubic-bezier(.65, .05,  .36, 1);
+$dur-fast:    150ms;
+$dur-base:    250ms;
+$dur-slow:    450ms;
+
+// ---------- Z-index ladder --------------------------------------------------
+$z-below:    -1;
+$z-base:      1;
+$z-content:   10;
+$z-header:    100;
+$z-overlay:   500;
+$z-modal:     1000;
+$z-toast:     2000;

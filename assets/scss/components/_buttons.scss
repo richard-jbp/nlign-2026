@@ -1,0 +1,114 @@
+// =============================================================================
+// Buttons
+// -----------------------------------------------------------------------------
+// Variants from mockup:
+//   primary  — solid orange (header CTA, "Book Demo")
+//   sage     — solid sage green (hero "Book Demo", footer CTA bar)
+//   ghost    — outlined ("Watch Overview")
+//   text     — link with arrow ("Watch the Demo →")
+// =============================================================================
+
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as m;
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: $space-2;
+	padding: $space-3 $space-6;
+	min-height: 48px;
+	font-weight: 600;
+	font-size: $fz-body-sm;
+	letter-spacing: 0;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: $radius-sm;
+	cursor: pointer;
+	transition: background-color $dur-base $ease-out,
+	            color            $dur-base $ease-out,
+	            border-color     $dur-base $ease-out,
+	            transform        $dur-fast $ease-out;
+	white-space: nowrap;
+
+	&:hover { transform: translateY(-1px); }
+	&:active { transform: translateY(0); }
+
+	&:focus-visible { @include m.focus-ring; }
+
+	@include m.reduce-motion {
+		transition: none;
+		&:hover, &:active { transform: none; }
+	}
+}
+
+// Primary — solid orange (header CTA).
+.button--primary {
+	background: $nlign-orange;
+	color: $nlign-text;
+	border-color: $nlign-orange;
+
+	&:hover {
+		background: $nlign-orange-700;
+		border-color: $nlign-orange-700;
+		color: $nlign-text;
+	}
+}
+
+// Sage — solid green-grey (hero / CTA bar Book Demo).
+.button--sage {
+	background: $nlign-sage;
+	color: $nlign-ink-on-sage;
+	border-color: $nlign-sage;
+
+	&:hover {
+		background: $nlign-sage-700;
+		border-color: $nlign-sage-700;
+		color: $nlign-text;
+	}
+}
+
+// Ghost — outlined.
+.button--ghost {
+	background: transparent;
+	color: $nlign-text;
+	border-color: rgba(255, 255, 255, .35);
+
+	&:hover {
+		background: rgba(255, 255, 255, .06);
+		border-color: $nlign-text;
+		color: $nlign-text;
+	}
+}
+
+// Text — inline link with arrow.
+.button--text {
+	padding: 0;
+	min-height: 0;
+	background: transparent;
+	color: $nlign-orange;
+	font-weight: 700;
+	letter-spacing: $tracking-eyebrow;
+	text-transform: uppercase;
+	font-size: $fz-body-sm;
+	border: 0;
+	border-radius: 0;
+
+	&::after {
+		content: "→";
+		display: inline-block;
+		margin-left: $space-2;
+		transition: transform $dur-base $ease-out;
+	}
+
+	&:hover {
+		color: $nlign-orange-700;
+		transform: none;
+
+		&::after { transform: translateX(4px); }
+	}
+}
+
+// Sizing.
+.button--sm { padding: $space-2 $space-4; min-height: 36px; font-size: .8125rem; }
+.button--lg { padding: $space-4 $space-8; min-height: 56px; font-size: $fz-body; }

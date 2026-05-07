@@ -38,6 +38,12 @@ jobs:
           sed -i 's|../fonts/|fonts/|g' docs/dist/main.css
           cp assets/fonts/*.woff2 docs/fonts/
 
+          # Bust the CSS cache: rewrite the <link> in docs/index.html with the
+          # current epoch timestamp so each deploy is uniquely-versioned and
+          # CDNs / browsers can't serve a stale main.css.
+          TS=$(date +%s)
+          sed -i -E "s|href=\"dist/main\\.css(\\?v=[0-9]+)?\"|href=\"dist/main.css?v=${TS}\"|g" docs/index.html
+
       - name: Commit preview if it changed
         run: |
           git config user.name  "github-actions[bot]"
